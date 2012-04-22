@@ -22,7 +22,7 @@ Three often discussed algorithms are
 
 We'll look at each of these and then compare there speed using a randomly generated list of ints. (Testing speed with alphanumeric and strings is also worthy of investigation but is beyond this post)
 
-   * Meerge Sort
+   * Merge Sort
 
         def merge(left, right):
 		    result, i, j = [], 0, 0
@@ -43,6 +43,6 @@ We'll look at each of these and then compare there speed using a randomly genera
 		    cut=length/2
 		    if length<2:
 		        return l
-		    left = merge_sort(l[:cut])
-		    right = merge_sort(l[cut:])
-		    return merge(left, right)
+		    #left = merge_sort(l[:cut])
+		    #right = merge_sort(l[cut:])
+		    return merge(merge_sort(l[:cut]),  merge_sort(l[cut:]))
