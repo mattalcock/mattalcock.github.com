@@ -234,9 +234,53 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <p>So in order to compare these algorithms to each other and python inbuilt sort. I decided to code up a speed test function and some code to generate random unsorted integer lists. The code for this can be found in my &#8216;hacks&#8217; project and under the &#8216;algos&#8217; folder.</p>
 
-<p><img src="images/algos/sort-compare-micro.png"></p>
+<p>The first test was just to run these four algorithms. The three above and pythons inbuilt sort to compare how these far on small lists of ints. Straight away you can see that the insertion sort is O(n<sup>2)</sup> and as n gets larger the performance drops of drastically.</p>
 
 <p><img src="images/algos/sort-compare-small.png"></p>
+
+<p>You can also see how well the inbuilt algorithm fairs as well as the merge and quick sort algorithms. I wanted to see how well insertion sort did on very small list sizes and the below shows the same tests on lists lower than 50 items.</p>
+
+<p><img src="images/algos/sort-compare-micro.png"></p>
+
+<p>As you can see altough insertion sort is terrible at large list sizes the fact that its inplace and not recurrsive means its actually quite good at small lists consitently beating both merge and quick sort for list under 16 elements.</p>
+
+<h4>So why is the inbuilt algorithm so good?</h4>
+
+<p>The inbuilt algorithm uses an adaptive merge sort algorithm. I decided to create adaptive versions of the quick sort algorithms. These algorithms take a sort function and use that on small lists. The below code shows a default using insertion sort when the list is less then 7 elements in length.</p>
+
+<figure class='code'><figcaption><span>Adaptive Quick Sort  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#Adaptive Quick Sort</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">adapt_quick_sort</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">sortf</span><span class="o">=</span><span class="n">insert_sort</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span><span class="n">size</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">insert_sort</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">pivot</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">less</span><span class="p">,</span> <span class="n">more</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">x</span><span class="o">&lt;=</span><span class="n">pivot</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">less</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">more</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">less</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">pivot</span><span class="p">]</span> <span class="o">+</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">more</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
