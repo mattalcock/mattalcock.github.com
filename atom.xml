@@ -4,7 +4,7 @@
   <title><![CDATA[Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-04-22T14:31:23+01:00</updated>
+  <updated>2012-04-22T14:50:40+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -28,7 +28,7 @@ This blog post helps answer these questions and gives some insight into the powe
 <p>Three often discussed algorithms are</p>
 
 <ul>
-<li> Meerge Sort</li>
+<li> Merge Sort</li>
 <li> Quick Sort</li>
 <li> Insertion Sort</li>
 </ul>
@@ -37,6 +37,8 @@ This blog post helps answer these questions and gives some insight into the powe
 <p>We&#8217;ll look at each of these and then compare there speed using a randomly generated list of ints. (Testing speed with alphanumeric and strings is also worthy of investigation but is beyond this post)</p>
 
 <h3>Merge Sort</h3>
+
+<p>Merge sort is a comparative divide and conquer algorithm. The algorithm recursively divides up list until the length is one and then recombines using a merge function that maintains the sorted order as it recombines the lists. Merge sort is often described to be an O(nlogn) algorithm.</p>
 
 <figure class='code'><figcaption><span>Merge Sort  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -80,13 +82,81 @@ This blog post helps answer these questions and gives some insight into the powe
 </span><span class='line'><span class="k">def</span> <span class="nf">merge_sort</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
 </span><span class='line'>    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 </span><span class='line'>    <span class="n">cut</span><span class="o">=</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span>
-</span><span class='line'>    <span class="k">if</span> <span class="n">length</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">:</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">length</span><span class="o">&lt;=</span><span class="mi">1</span><span class="p">:</span>
 </span><span class='line'>        <span class="k">return</span> <span class="n">l</span>
 </span><span class='line'>    <span class="c">#left = merge_sort(l[:cut])</span>
 </span><span class='line'>    <span class="c">#right = merge_sort(l[cut:])</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">merge</span><span class="p">(</span><span class="n">merge_sort</span><span class="p">(</span><span class="n">l</span><span class="p">[:</span><span class="n">cut</span><span class="p">]),</span>  <span class="n">merge_sort</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">cut</span><span class="p">:]))</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<h3>Quick Sort</h3>
+
+<p>Quick sort like merge sort is another divide and conquer algorithm that is recursive in nature. A pivot value is chosen (below i use the half way point other approaches use the last or first element) and then the lists are broken into 3 parts. Lists which contain values larger and lower than the pivot and the pivot itself. These segmented lists are then themselves sorted. Once the list size is 1 these lists are then in the correct place to be recombined using list concatenation. This algorithm is also descriibed to be an O(nlogn) algorthim but not it&#8217;s worst case operation can be O(n<sup>2)</sup> although this worst case is rare.</p>
+
+<figure class='code'><figcaption><span>Quick Sort  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#Quick Sort</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+</span><span class='line'>    <span class="k">if</span> <span class="n">length</span> <span class="o">&lt;=</span><span class="mi">1</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">l</span>
+</span><span class='line'>    <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">pivot</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">length</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">less</span><span class="p">,</span> <span class="n">more</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">l</span><span class="p">:</span>
+</span><span class='line'>            <span class="k">if</span> <span class="n">x</span><span class="o">&lt;=</span><span class="n">pivot</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">less</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>            <span class="k">else</span><span class="p">:</span>
+</span><span class='line'>                <span class="n">more</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">return</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">less</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="n">pivot</span><span class="p">]</span> <span class="o">+</span> <span class="n">quick_sort</span><span class="p">(</span><span class="n">more</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Insertion Sort</h3>
+
+<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an inplace algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
+
+<figure class='code'><figcaption><span>Insertion Sort  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c">#Insertion Sort</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="n">l</span><span class="p">):</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)):</span>
+</span><span class='line'>        <span class="n">save</span><span class="o">=</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span class='line'>        <span class="n">j</span><span class="o">=</span><span class="n">i</span>
+</span><span class='line'>        <span class="k">while</span> <span class="n">j</span><span class="o">&gt;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">l</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">save</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">l</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">l</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</span><span class='line'>            <span class="n">j</span><span class="o">-=</span><span class="mi">1</span>
+</span><span class='line'>        <span class="n">l</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">save</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">l</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Speed Test</h3>
+
+<p>So in order to compare these algorithms to each other and python inbuilt sort. I decided to code up a speed test function and some code to generate random unsorted integer lists. The code for this can be found in my &#8216;hacks&#8217; project on Github in the &#8216;algos&#8217; folder. There is also some code in there to generate the follow graphs.</p>
 ]]></content>
   </entry>
   
