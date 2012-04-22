@@ -4,7 +4,7 @@
   <title><![CDATA[Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-04-22T14:50:40+01:00</updated>
+  <updated>2012-04-22T15:37:54+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -156,7 +156,11 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <h3>Speed Test</h3>
 
-<p>So in order to compare these algorithms to each other and python inbuilt sort. I decided to code up a speed test function and some code to generate random unsorted integer lists. The code for this can be found in my &#8216;hacks&#8217; project on Github in the &#8216;algos&#8217; folder. There is also some code in there to generate the follow graphs.</p>
+<p>So in order to compare these algorithms to each other and python inbuilt sort. I decided to code up a speed test function and some code to generate random unsorted integer lists. The code for this can be found in my &#8216;hacks&#8217; project and under the &#8216;algos&#8217; folder.</p>
+
+<p><img src="images/algos/sort-compare-micro.png"></p>
+
+<p><img src="images/algos/sort-compare-small.png"></p>
 ]]></content>
   </entry>
   
