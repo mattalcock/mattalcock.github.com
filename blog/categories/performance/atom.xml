@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Performance | Matt Alcock]]></title>
+  <link href="http://mattalcock.github.com/blog/categories/performance/atom.xml" rel="self"/>
+  <link href="http://mattalcock.github.com/"/>
+  <updated>2012-04-22T13:58:38+01:00</updated>
+  <id>http://mattalcock.github.com/</id>
+  <author>
+    <name><![CDATA[Matt Alcock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Python Sorting Algorithms]]></title>
+    <link href="http://mattalcock.github.com/blog/2012/04/22/python-sorting-algorithms/"/>
+    <updated>2012-04-22T13:41:00+01:00</updated>
+    <id>http://mattalcock.github.com/blog/2012/04/22/python-sorting-algorithms</id>
+    <content type="html"><![CDATA[<p>So how fast is sorting in Python? What algorithms are there out there and how do they perform over different array sizes and situations?
+This blog post helps answer these questions and gives some insight into the powerful performance of the inbuilt python sort function. I'm sure many people have run 'sort(list)' and then wondered what algorithm has that just used. If my list get really big is that going to be dog slow or super fast?</p>
+
+<p>Sorting is a key algorithms, keeping data structures sorted helps search, lookup and a multitude of other operations. Many algorithms include sorting as component of there execution. Getting the sorting right can offer lower the order of magnitude of processing and make that slow, poor performing process super fast!</p>
+
+<p>So what sorting algorithms are there out there.</p>
+
+<p>Three often discussed algorithms are</p>
+
+<pre><code>* Quick Sort
+* Merge Sort
+* Insert Sort
+</code></pre>
+
+<p>We'll look at each of these and then compare there speed using a randomly generated list of ints. (Testing speed with alphanumeric and strings is also worthy of investigation but is beyond this post)</p>
+]]></content>
+  </entry>
+  
+</feed>
