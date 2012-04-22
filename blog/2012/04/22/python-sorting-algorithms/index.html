@@ -100,12 +100,41 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <p>Three often discussed algorithms are</p>
 
-<pre><code>* Quick Sort
-* Merge Sort
-* Insert Sort
+<pre><code>* Meerge Sort
+* Quick Sort
+* Insertion Sort
 </code></pre>
 
 <p>We&#8217;ll look at each of these and then compare there speed using a randomly generated list of ints. (Testing speed with alphanumeric and strings is also worthy of investigation but is beyond this post)</p>
+
+<ul>
+<li><p> Merge Sort</p>
+
+<pre><code>def merge(left, right):
+    result, i, j = [], 0, 0
+    while i &lt; len(left) and j &lt; len(right):
+        if left[i] &lt;= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result += left[i:]
+    result += right[j:]
+    return result
+
+#Merge Sort
+def merge_sort(l):
+    length = len(l)
+    cut=length/2
+    if length&lt;2:
+        return l
+    #left = merge_sort(l[:cut])
+    #right = merge_sort(l[cut:])
+    return merge(merge_sort(l[:cut]),  merge_sort(l[cut:]))
+</code></pre></li>
+</ul>
+
 </div>
 
 
