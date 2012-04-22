@@ -5,7 +5,6 @@ date: 2012-04-22 13:41
 comments: true
 categories: [Python, Algorithms, Performance]
 published: true
-author: Matt Alcock 
 ---
 
 So how fast is sorting in Python? What algorithms are there out there and how do they perform over different array sizes and situations?
