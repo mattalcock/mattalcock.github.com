@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-04-22T14:30:00+01:00</updated>
+  <updated>2012-04-22T14:31:23+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -38,7 +38,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <h3>Merge Sort</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>[merge sort] [] </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Merge Sort  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
