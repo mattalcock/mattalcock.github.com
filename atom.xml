@@ -4,7 +4,7 @@
   <title><![CDATA[Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-05-10T00:03:34+01:00</updated>
+  <updated>2012-05-10T00:15:16+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Written Images]]></title>
+    <link href="http://mattalcock.github.com/blog/2012/05/10/written-images/"/>
+    <updated>2012-05-10T00:12:00+01:00</updated>
+    <id>http://mattalcock.github.com/blog/2012/05/10/written-images</id>
+    <content type="html"><![CDATA[<p>I love creative projects that use technology and I enjoy funding inspiring people through kickstarter. So when I found out about the ‘Written Images’ project I had to get involved and back there fund raising. Their project is to create and print a batch of totally individual art books.</p>
+
+<p>The team use input from artists that span the globe to generate these unique books. Artists submit Processing (an artistic coding language) code to a central system that in tern source different publicly available data to derive or seed the individual art forms. These art forms are collected and a high quality printed book is generated. Some of there artwork and a brief video of how the process works follows…..</p>
+
+<iframe frameborder="0" src="http://www.kickstarter.com/projects/deffekt/written-images/widget/video.html"></iframe>
+
+
+<p><img src="images/written-images/image-48956-full.jpeg">
+<img src="images/written-images/image-48957-full.jpeg">
+<img src="images/written-images/image-48958-full.jpeg">
+<img src="images/written-images/image-48959-full.jpeg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Sorting Algorithms]]></title>
