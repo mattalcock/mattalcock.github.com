@@ -31,6 +31,18 @@ This blog &hellip;">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-21948353-7']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -201,7 +213,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <h3>Insertion Sort</h3>
 
-<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an inplace algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
+<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an &#8216;in place&#8217; algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
 
 <figure class='code'><figcaption><span>Insertion Sort  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -239,7 +251,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <p><img src="images/algos/sort-compare-micro.png"></p>
 
-<p>As you can see altough insertion sort is terrible at large list sizes the fact that its inplace and not recurrsive means its actually quite good at small lists consitently beating both merge and quick sort for list under 16 elements.</p>
+<p>As you can see although insertion sort is terrible at large list sizes the fact that its &#8216;in place&#8217; and not recursive means its actually quite good at small lists consistently beating both merge and quick sort for list under 16 elements.</p>
 
 <h4>So why is the inbuilt algorithm so good?</h4>
 
@@ -277,7 +289,7 @@ This blog post helps answer these questions and gives some insight into the powe
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>This adaptive sort takes maybe milliseconds of the merge sort algorithm above. The inbuilt sort is still an order of magnitude faster. In my next post we&#8217;ll dig into why and look at how you can embed C code python to get extremely high performance sorting&#8230;.</p>
 </div>
 
 
@@ -323,6 +335,8 @@ This blog post helps answer these questions and gives some insight into the powe
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/01/31/subway-paths/" title="Previous Post: Subway Paths">&laquo; Subway Paths</a>
+      
       
     </p>
   </footer>
@@ -338,6 +352,18 @@ This blog post helps answer these questions and gives some insight into the powe
     
       <li class="post">
         <a href="/blog/2012/04/22/python-sorting-algorithms/">Python Sorting Algorithms</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/31/subway-paths/">Subway Paths</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/31/carbon-calculator/">Carbon Calculator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/01/25/twitterati/">Twitterati</a>
       </li>
     
   </ul>

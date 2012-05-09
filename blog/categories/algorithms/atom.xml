@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Algorithms | Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/blog/categories/algorithms/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-05-09T23:40:59+01:00</updated>
+  <updated>2012-05-10T00:03:34+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -160,7 +160,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <h3>Insertion Sort</h3>
 
-<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an inplace algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
+<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an 'in place' algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Insertion Sort  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -211,7 +211,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <p><img src="images/algos/sort-compare-micro.png"></p>
 
-<p>As you can see altough insertion sort is terrible at large list sizes the fact that its inplace and not recurrsive means its actually quite good at small lists consitently beating both merge and quick sort for list under 16 elements.</p>
+<p>As you can see although insertion sort is terrible at large list sizes the fact that its 'in place' and not recursive means its actually quite good at small lists consistently beating both merge and quick sort for list under 16 elements.</p>
 
 <h4>So why is the inbuilt algorithm so good?</h4>
 
@@ -261,6 +261,8 @@ This blog post helps answer these questions and gives some insight into the powe
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This adaptive sort takes maybe milliseconds of the merge sort algorithm above. The inbuilt sort is still an order of magnitude faster. In my next post we'll dig into why and look at how you can embed C code python to get extremely high performance sorting....</p>
 ]]></content>
   </entry>
   

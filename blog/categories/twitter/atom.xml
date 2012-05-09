@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Twitter | Matt Alcock]]></title>
+  <link href="http://mattalcock.github.com/blog/categories/twitter/atom.xml" rel="self"/>
+  <link href="http://mattalcock.github.com/"/>
+  <updated>2012-05-10T00:03:34+01:00</updated>
+  <id>http://mattalcock.github.com/</id>
+  <author>
+    <name><![CDATA[Matt Alcock]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Twitterati]]></title>
+    <link href="http://mattalcock.github.com/blog/2012/01/25/twitterati/"/>
+    <updated>2012-01-25T23:49:00+00:00</updated>
+    <id>http://mattalcock.github.com/blog/2012/01/25/twitterati</id>
+    <content type="html"><![CDATA[<p>Using large unstructured and noisy (aka dirty) data source to drive insight and intelligence is not new. It's been around for centuries, the Collective Intelligence of the many have offered insights and direction for animals, civilisations, leaders and organisations for hundreds of years. What is more recent is the tools to systematically analyse these massive amounts of data, they are constantly improving and have matured dramatically over the recent years. Ok so whats new?</p>
+
+<p>Data has never really been easy to access and has often been held behind closed doors. With easy access to large data sets the barrier to entry is lower and it's far easier to generate collective intelligence. There have been lots of public data sets available over the past 10 or 20 years but its normally very focused to a domain or subject matter. Wikipedia revolutionised the world with an open encyclopaedia of information but pulling out insight from the data isn't simple when the data is highly structured around a relatively static subject and often descriptive in nature rather than opinionated. So where can we get massive amounts of data, in a easily accessible manner, which contains insights and options about any subject?</p>
+
+<p>Enter twitter and more especially an free and easy to use api (application programming interface) and masses amounts of data. (Twitter API) A tweet is an easy data item to model and can it contain massive amounts of insight if processed, aggregated and visualised appropriately. The scale, simplicity of a simple tweet is extremely powerful. This has created an extreme explosion of companies programmers and tools that analyse twitter data. The start of the Twitterati...</p>
+
+<p><img src="images/tweet.jpeg"></p>
+]]></content>
+  </entry>
+  
+</feed>

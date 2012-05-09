@@ -4,7 +4,7 @@
   <title><![CDATA[Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-05-09T23:40:59+01:00</updated>
+  <updated>2012-05-10T00:03:34+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -128,7 +128,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <h3>Insertion Sort</h3>
 
-<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an inplace algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
+<p>Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an &#8216;in place&#8217; algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n<sup>2)</sup> algorithm</p>
 
 <figure class='code'><figcaption><span>Insertion Sort  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -166,7 +166,7 @@ This blog post helps answer these questions and gives some insight into the powe
 
 <p><img src="images/algos/sort-compare-micro.png"></p>
 
-<p>As you can see altough insertion sort is terrible at large list sizes the fact that its inplace and not recurrsive means its actually quite good at small lists consitently beating both merge and quick sort for list under 16 elements.</p>
+<p>As you can see although insertion sort is terrible at large list sizes the fact that its &#8216;in place&#8217; and not recursive means its actually quite good at small lists consistently beating both merge and quick sort for list under 16 elements.</p>
 
 <h4>So why is the inbuilt algorithm so good?</h4>
 
@@ -204,7 +204,54 @@ This blog post helps answer these questions and gives some insight into the powe
 </span></code></pre></td></tr></table></div></figure>
 
 
+<p>This adaptive sort takes maybe milliseconds of the merge sort algorithm above. The inbuilt sort is still an order of magnitude faster. In my next post we&#8217;ll dig into why and look at how you can embed C code python to get extremely high performance sorting&#8230;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Subway Paths]]></title>
+    <link href="http://mattalcock.github.com/blog/2012/01/31/subway-paths/"/>
+    <updated>2012-01-31T23:53:00+00:00</updated>
+    <id>http://mattalcock.github.com/blog/2012/01/31/subway-paths</id>
+    <content type="html"><![CDATA[<p>Urban planner Neil Freeman maps the world&#8217;s subway systems to scale in a minimal style resembling the scribbles or renderings of weird sea creatures by a two-year-old. I wish there were nodes to show stops, too, but the contrasts between the compact TRTA in Tokyo and RATP in Paris, and the spread out Seoul Metro and Transport for London is an interesting look.</p>
 
+<p><img src="images/subway.png"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Carbon Calculator]]></title>
+    <link href="http://mattalcock.github.com/blog/2012/01/31/carbon-calculator/"/>
+    <updated>2012-01-31T23:52:00+00:00</updated>
+    <id>http://mattalcock.github.com/blog/2012/01/31/carbon-calculator</id>
+    <content type="html"><![CDATA[<p>The Carbon Calculator developed by Vizzuality is an interactive mapping tool that reveals the potential contribution of any selected area in the world to climate change mitigation. The online tool calculates rough estimates of user-selected areas on a wide set of parameters, including: the carbon stored in above and below ground live biomass and soil, the percentage overlap with existing protected areas, the status of forests, the restoration potential inside selected areas, the maximum carbon sequestration potential.</p>
+
+<p>As an original approach, the mapping tool allows users to draw a line around their area of interest, or select any protected area, from which the detailed information and statistics are shown.</p>
+
+<p>The tool uses data delivered by CBD Secretariat (Convention on Biological Diversity), LifeWeb (CBD Programme of Work on Protected Areas) and UNEP-WCMC (UNEP World Conservation Monitoring Centre).</p>
+
+<p>See a comparison of London with the New Forest below. I love the styling of the comparison statistics and the way you can great polygon areas and comparisons.</p>
+
+<p>Screen grab of polygon comparison&#8230;</p>
+
+<p><img src="images/carboncalc_snippet.png"></p>
+
+<p><img src="images/carboncalculator.png"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Twitterati]]></title>
+    <link href="http://mattalcock.github.com/blog/2012/01/25/twitterati/"/>
+    <updated>2012-01-25T23:49:00+00:00</updated>
+    <id>http://mattalcock.github.com/blog/2012/01/25/twitterati</id>
+    <content type="html"><![CDATA[<p>Using large unstructured and noisy (aka dirty) data source to drive insight and intelligence is not new. It&#8217;s been around for centuries, the Collective Intelligence of the many have offered insights and direction for animals, civilisations, leaders and organisations for hundreds of years. What is more recent is the tools to systematically analyse these massive amounts of data, they are constantly improving and have matured dramatically over the recent years. Ok so whats new?</p>
+
+<p>Data has never really been easy to access and has often been held behind closed doors. With easy access to large data sets the barrier to entry is lower and it&#8217;s far easier to generate collective intelligence. There have been lots of public data sets available over the past 10 or 20 years but its normally very focused to a domain or subject matter. Wikipedia revolutionised the world with an open encyclopaedia of information but pulling out insight from the data isn&#8217;t simple when the data is highly structured around a relatively static subject and often descriptive in nature rather than opinionated. So where can we get massive amounts of data, in a easily accessible manner, which contains insights and options about any subject?</p>
+
+<p>Enter twitter and more especially an free and easy to use api (application programming interface) and masses amounts of data. (Twitter API) A tweet is an easy data item to model and can it contain massive amounts of insight if processed, aggregated and visualised appropriately. The scale, simplicity of a simple tweet is extremely powerful. This has created an extreme explosion of companies programmers and tools that analyse twitter data. The start of the Twitterati&#8230;</p>
+
+<p><img src="images/tweet.jpeg"></p>
 ]]></content>
   </entry>
   
