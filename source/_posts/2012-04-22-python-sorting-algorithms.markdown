@@ -75,7 +75,7 @@ def quick_sort(l):
 {% endcodeblock %}
 
 ### Insertion Sort
-Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an inplace algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n^2) algorithm 
+Insertion sort is a very simple comparative sorting algorithm which is not recursive. In this algorithm the sorted array is built one entry at a time. The power of this algorithm is that only requires constant space (O(1) space) as it is an 'in place' algorithm using only a few variables and the list itself to move items around. The problem with insertion sort is that with large lists its terribly inefficient and is a O(n^2) algorithm 
 
 
 {% codeblock Insertion Sort lang:python %}
@@ -104,7 +104,7 @@ You can also see how well the inbuilt algorithm fairs as well as the merge and q
 
 {% img  images/algos/sort-compare-micro.png %}
 
-As you can see altough insertion sort is terrible at large list sizes the fact that its inplace and not recurrsive means its actually quite good at small lists consitently beating both merge and quick sort for list under 16 elements.
+As you can see although insertion sort is terrible at large list sizes the fact that its 'in place' and not recursive means its actually quite good at small lists consistently beating both merge and quick sort for list under 16 elements.
 
 ####So why is the inbuilt algorithm so good?
 
@@ -126,6 +126,8 @@ def adapt_quick_sort(l, sortf=insert_sort, size=7):
                 more.append(x)
         return quick_sort(less) + [pivot] + quick_sort(more)
 {% endcodeblock %}
+
+This adaptive sort takes maybe milliseconds of the merge sort algorithm above. The inbuilt sort is still an order of magnitude faster. In my next post we'll dig into why and look at how you can embed C code python to get extremely high performance sorting....
 
 
 
