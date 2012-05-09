@@ -1,6 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
+        <loc>http://mattalcock.github.com/blog/2011/05/10/written-images/</loc>
+        <lastmod>2012-05-10T00:23:20+01:00</lastmod>
+    </url>
+    <url>
         <loc>http://mattalcock.github.com/blog/2012/01/25/twitterati/</loc>
         <lastmod>2012-05-09T23:58:50+01:00</lastmod>
     </url>
@@ -17,15 +21,11 @@
         <lastmod>2012-05-09T23:49:02+01:00</lastmod>
     </url>
     <url>
-        <loc>http://mattalcock.github.com/blog/2012/05/10/written-images/</loc>
-        <lastmod>2012-05-10T00:19:25+01:00</lastmod>
-    </url>
-    <url>
         <loc>http://mattalcock.github.com/blog/archives/</loc>
-        <lastmod>2012-05-10T00:19:25+01:00</lastmod>
+        <lastmod>2012-05-10T00:23:20+01:00</lastmod>
     </url>
     <url>
         <loc>http://mattalcock.github.com/</loc>
-        <lastmod>2012-05-10T00:19:25+01:00</lastmod>
+        <lastmod>2012-05-10T00:23:20+01:00</lastmod>
     </url>
 </urlset>
