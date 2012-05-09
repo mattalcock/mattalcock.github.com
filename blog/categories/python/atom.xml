@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | Matt Alcock]]></title>
   <link href="http://mattalcock.github.com/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://mattalcock.github.com/"/>
-  <updated>2012-04-22T16:00:57+01:00</updated>
+  <updated>2012-05-09T23:40:59+01:00</updated>
   <id>http://mattalcock.github.com/</id>
   <author>
     <name><![CDATA[Matt Alcock]]></name>
@@ -186,7 +186,7 @@ This blog post helps answer these questions and gives some insight into the powe
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="k">def</span> <span class="nf">insert_sort</span><span class="p">(</span><span class="n">l</span><span class="p">):</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)):</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)):</span>
 </span><span class='line'>    <span class="n">save</span><span class="o">=</span><span class="n">l</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </span><span class='line'>    <span class="n">j</span><span class="o">=</span><span class="n">i</span>
 </span><span class='line'>    <span class="k">while</span> <span class="n">j</span><span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mi">0</span> <span class="ow">and</span> <span class="n">l</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">save</span><span class="p">:</span>
