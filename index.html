@@ -9,8 +9,7 @@
   <meta name="author" content="Matt Alcock">
 
   
-  <meta name="description" content="So how fast is sorting in Python? What algorithms are there out there and how do they perform over different array sizes and situations?
-This blog &hellip;">
+  <meta name="description" content="Finding the right visualisation library is often a hard choice, there are so many out there. Like most things really comes down to what you want, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +76,212 @@ This blog &hellip;">
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/13/google-charts-plotting-performance/">Google Charts - Plotting Performance</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-13T20:55:00+01:00" pubdate data-updated="true">May 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Finding the right visualisation library is often a hard choice, there are so many out there. Like most things really comes down to what you want, want libraries currently exist and what your trying to achieve. After writing my last post of the performance of Python sorting. I wanted to package up the functions I used to speed test and chart the performance of different functions. I was working in python and I wanted something that was quick to pull together &#8230; If I had a bit more time I think I would have coded something that integrates D3 and python but the focus was chatting performance not building the best viz library.</p>
+
+<p>Google charts api is great quick to use API that one can use to generate basic but good looking charts with very little code. There is also a well written library called &#8216;pygooglechart&#8217; that abstracts away some of the api into nice chart objects that you can call from python. All I&#8217;ve done is taken that one step further and abstract the chart tools to take a data set, work out the ranges of data supplied and chart the most appropriate line chart for the data given (dynamically scaling the access and labels e.t.c)</p>
+
+<p>The chart code can be found in my hacks project and is here:</p>
+
+<figure class='code'><figcaption><span>Charting Datasets  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="kn">from</span> <span class="nn">pygooglechart</span> <span class="kn">import</span> <span class="n">SimpleLineChart</span>
+</span><span class='line'><span class="kn">from</span> <span class="nn">pygooglechart</span> <span class="kn">import</span> <span class="n">Axis</span>
+</span><span class='line'>
+</span><span class='line'><span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="sd">dataset = [(&#39;name&#39;, [(x,y),(x1,y1)]), (&#39;name2&#39;, [(x2,y2),(x3,y3)])]</span>
+</span><span class='line'><span class="sd">data is a list of series where each series is a list of tuples</span>
+</span><span class='line'><span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">maxy</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">maxy</span><span class="o">=</span><span class="mi">0</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">m</span><span class="o">=</span><span class="nb">max</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">s</span><span class="p">])</span>
+</span><span class='line'>        <span class="k">if</span> <span class="n">m</span> <span class="o">&gt;</span> <span class="n">maxy</span><span class="p">:</span>
+</span><span class='line'>            <span class="n">maxy</span> <span class="o">=</span> <span class="n">m</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">maxy</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">linechart</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">400</span><span class="p">)):</span>
+</span><span class='line'>    <span class="n">max_y</span> <span class="o">=</span> <span class="n">maxy</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">chart</span> <span class="o">=</span> <span class="n">SimpleLineChart</span><span class="p">(</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_y</span><span class="p">])</span>
+</span><span class='line'>    <span class="n">legend</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">series_name</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+</span><span class='line'>        <span class="n">chart</span><span class="o">.</span><span class="n">add_data</span><span class="p">([</span><span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">s</span><span class="p">])</span>
+</span><span class='line'>        <span class="n">legend</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">series_name</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">chart</span><span class="o">.</span><span class="n">set_colours</span><span class="p">([</span><span class="s">&#39;057D9F&#39;</span><span class="p">,</span> <span class="s">&#39;8106A9&#39;</span><span class="p">,</span> <span class="s">&#39;E9FB00&#39;</span><span class="p">,</span> <span class="s">&#39;FF8100&#39;</span><span class="p">])</span>
+</span><span class='line'>    <span class="n">chart</span><span class="o">.</span><span class="n">set_legend</span><span class="p">(</span><span class="n">legend</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">chart</span><span class="o">.</span><span class="n">set_grid</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">left_axis</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">max_y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">),</span> <span class="mi">25</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">left_axis</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+</span><span class='line'>    <span class="n">chart</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="n">Axis</span><span class="o">.</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">left_axis</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">bottom_axis</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]]</span>
+</span><span class='line'>    <span class="n">chart</span><span class="o">.</span><span class="n">set_axis_labels</span><span class="p">(</span><span class="n">Axis</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">,</span> <span class="n">bottom_axis</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">chart</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Things to improve on are creating a larger list of colours so >4 different series can be charted and working out a better way to scale the labels. The data set is a list of series and each series has a name and a list of tuples represneting the x and y corods.</p>
+
+<p>So we have a simple function for charting datasets. Example use would be:</p>
+
+<figure class='code'><figcaption><span>Charting Datasets Example  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">data</span> <span class="o">=</span><span class="p">[</span>
+</span><span class='line'>            <span class="p">[(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">6.107497215270996</span><span class="p">),</span> <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mf">13.0964994430542</span><span class="p">),</span> <span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mf">20.646286010742188</span><span class="p">),</span> <span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mf">28.435134887695312</span><span class="p">),</span> <span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mf">37.9558801651001</span><span class="p">),</span>
+</span><span class='line'>            <span class="p">(</span><span class="mi">6000</span><span class="p">,</span> <span class="mf">45.04199028015137</span><span class="p">),</span> <span class="p">(</span><span class="mi">7000</span><span class="p">,</span> <span class="mf">52.11312770843506</span><span class="p">),</span> <span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mf">59.99007225036621</span><span class="p">),</span> <span class="p">(</span><span class="mi">9000</span><span class="p">,</span> <span class="mf">68.20797920227051</span><span class="p">)],</span>
+</span><span class='line'>            <span class="p">[(</span><span class="mi">1000</span><span class="p">,</span> <span class="mf">0.2487659454345703</span><span class="p">),</span> <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mf">0.5492925643920898</span><span class="p">),</span> <span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mf">0.857090950012207</span><span class="p">),</span> <span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="mf">1.1699199676513672</span><span class="p">),</span> <span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="mf">1.5373945236206055</span><span class="p">),</span>
+</span><span class='line'>             <span class="p">(</span><span class="mi">6000</span><span class="p">,</span> <span class="mf">1.8898963928222656</span><span class="p">),</span> <span class="p">(</span><span class="mi">7000</span><span class="p">,</span> <span class="mf">2.2233009338378906</span><span class="p">),</span> <span class="p">(</span><span class="mi">8000</span><span class="p">,</span> <span class="mf">2.5486230850219727</span><span class="p">),</span> <span class="p">(</span><span class="mi">9000</span><span class="p">,</span> <span class="mf">2.9711246490478516</span><span class="p">)]</span>
+</span><span class='line'>          <span class="p">]</span>
+</span><span class='line'>    <span class="n">linechart</span><span class="p">(</span><span class="s">&#39;line.png&#39;</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we need to generate a stress test for a function over a range of inputs. For this I generate a function called speed test. It takes a function to test and number of tests that is done for each situation called &#8216;iterations&#8217;, a size list which is a list of different list sizes the function should be exposed to and a list generator function that generates &#8216;random&#8217; or similar lists for testing.</p>
+
+<p>The defaults are all set so the function is exposed to lists of size 100,200,300 all the way to 1,000 in length and all lists contain a random set of integers. the function is exposed to a random list 10 times per test size and the average computation time is calculated for that list size. The function generates a list of tuples containing the size of test, time taken to compute all tests at that size the count of tests at that size and the average time to compute at that size.</p>
+
+<p>See the code below:</p>
+
+<figure class='code'><figcaption><span>Speed Test  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="sd">&quot;&quot;&quot; </span>
+</span><span class='line'><span class="sd">Speed test function</span>
+</span><span class='line'><span class="sd">Given a function a list of list sizes to work on and a number of iterations</span>
+</span><span class='line'><span class="sd">Return a list of tuples giving an average compute time of the function of each item in the list</span>
+</span><span class='line'><span class="sd">&quot;&quot;&quot;</span>
+</span><span class='line'><span class="k">def</span> <span class="nf">speedtest</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">iterations</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">sizelist</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="mi">100</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)],</span> <span class="n">listgen</span><span class="o">=</span><span class="n">random_int_list</span><span class="p">):</span>
+</span><span class='line'>    <span class="n">test_count</span><span class="p">,</span> <span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="n">time_results</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span class='line'>    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sizelist</span><span class="p">:</span>
+</span><span class='line'>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="n">iterations</span><span class="p">):</span>
+</span><span class='line'>            <span class="n">test_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">listgen</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</span><span class='line'>            <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span class='line'>            <span class="n">r</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">test_list</span><span class="p">)</span>
+</span><span class='line'>            <span class="n">duration</span> <span class="o">=</span>  <span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>
+</span><span class='line'>            <span class="c">#print &quot;Function %s took %s on a list size of %s&quot; % (f,s,duration)</span>
+</span><span class='line'>            <span class="n">total_time</span> <span class="o">+=</span><span class="n">duration</span>
+</span><span class='line'>            <span class="n">test_count</span><span class="o">+=</span><span class="mi">1</span>
+</span><span class='line'>        <span class="n">time_results</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">s</span><span class="p">,</span><span class="n">total_time</span><span class="p">,</span> <span class="n">test_count</span><span class="p">,</span> <span class="n">total_time</span><span class="o">/</span><span class="n">test_count</span><span class="p">))</span>
+</span><span class='line'>        <span class="n">test_count</span><span class="p">,</span> <span class="n">total_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">time_results</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Pulling it all together. Now we have a function to plot data and a speedtest for functions that take lists we can wire the two together.Here is how you plot the performance of merge vs quick sort in 4 lines of code.</p>
+
+<figure class='code'><figcaption><span>Speed Tests & Charts  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+</span><span class='line'>    <span class="n">dataset</span><span class="o">=</span><span class="p">[]</span>
+</span><span class='line'>    <span class="n">dataset</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;Merge&#39;</span><span class="p">,[(</span><span class="n">size</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="ow">in</span> <span class="n">speedtest</span><span class="p">(</span><span class="n">merge_sort</span><span class="p">)]))</span>
+</span><span class='line'>    <span class="n">dataset</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s">&#39;Quick&#39;</span><span class="p">,[(</span><span class="n">size</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="k">for</span> <span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">avg</span><span class="p">)</span> <span class="ow">in</span> <span class="n">speedtest</span><span class="p">(</span><span class="n">quick_sort</span><span class="p">)]))</span>
+</span><span class='line'>    <span class="n">linechart</span><span class="p">(</span><span class="s">&#39;sort-compare-small.png&#39;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>All code can be found in my hacks project.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -532,6 +737,10 @@ This blog post helps answer these questions and gives some insight into the powe
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/05/13/google-charts-plotting-performance/">Google Charts - Plotting Performance</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/04/22/python-sorting-algorithms/">Python Sorting Algorithms</a>
       </li>
     
@@ -545,10 +754,6 @@ This blog post helps answer these questions and gives some insight into the powe
     
       <li class="post">
         <a href="/blog/2012/01/25/twitterati/">Twitterati</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/05/10/written-images/">Written Images</a>
       </li>
     
   </ul>
